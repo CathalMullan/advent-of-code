@@ -1,0 +1,27 @@
+# https://rust-lang.github.io/rust-clippy/rust-1.62.0/index.html
+deny = [
+  "clippy::all",
+  "clippy::pedantic",
+  "clippy::nursery",
+  "clippy::cargo",
+  "clippy::as_conversions",
+  "clippy::clone_on_ref_ptr",
+  "clippy::get_unwrap",
+  "clippy::if_then_some_else_none",
+  "clippy::map_err_ignore",
+  "clippy::missing_enforced_import_renames",
+  "clippy::multiple_inherent_impl",
+  "clippy::rc_mutex",
+  "clippy::rest_pat_in_fully_bound_structs",
+  "clippy::same_name_method",
+  "clippy::single_char_lifetime_names",
+  "clippy::string_to_string",
+  "clippy::try_err",
+  "clippy::unneeded_field_pattern",
+  "clippy::unseparated_literal_suffix",
+  "clippy::unwrap_used",
+  "clippy::verbose_file_reads",
+  "clippy::wildcard_enum_match_arm",
+]
+
+allow = ["clippy::missing_errors_doc", "clippy::must_use_candidate"]

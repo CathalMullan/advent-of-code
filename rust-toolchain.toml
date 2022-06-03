@@ -1,0 +1,5 @@
+# https://github.com/rust-lang/rust/blob/master/RELEASES.md
+# https://rust-lang.github.io/rustup-components-history
+[toolchain]
+channel = "1.62.0"
+components = ["cargo", "rustfmt", "clippy", "rust-src", "rust-std"]

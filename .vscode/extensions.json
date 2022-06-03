@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "mkhl.direnv",
+    "jnoortheen.nix-ide",
+    "editorconfig.editorconfig",
+    "vadimcn.vscode-lldb",
+    "rust-lang.rust-analyzer",
+    "tamasfe.even-better-toml",
+    "serayuzgur.crates",
+  ]
+}

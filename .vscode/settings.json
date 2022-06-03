@@ -1,0 +1,40 @@
+{
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  // jnoortheen.nix-ide
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "rnix-lsp",
+  // brettm12345.nixfmt-vscode
+  "[nix]": {
+    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
+  },
+  "nixfmt.path": "nixpkgs-fmt",
+  // vadimcn.vscode-lldb
+  "lldb.verboseLogging": true,
+  // rust-lang.rust-analyzer
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "rust-analyzer.debug.engine": "vadimcn.vscode-lldb",
+  "rust-analyzer.checkOnSave.enable": true,
+  "rust-analyzer.checkOnSave.command": "cranky",
+  "rust-analyzer.checkOnSave.allTargets": true,
+  "rust-analyzer.imports.granularity.group": "module",
+  "rust-analyzer.imports.group.enable": true,
+  "rust-analyzer.imports.merge.glob": false,
+  "rust-analyzer.imports.prefix": "crate",
+  "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
+  "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true,
+  "rust-analyzer.inlayHints.maxLength": 50,
+  "rust-analyzer.inlayHints.typeHints.hideClosureInitialization": true,
+  "rust-analyzer.inlayHints.reborrowHints.enable": "always",
+  "rust-analyzer.lens.references.adt.enable": true,
+  "rust-analyzer.lens.references.enumVariant.enable": true,
+  "rust-analyzer.lens.references.method.enable": true,
+  "rust-analyzer.lens.references.trait.enable": true,
+  "rust-analyzer.completion.privateEditable.enable": true,
+  "rust-analyzer.hover.actions.references.enable": true,
+  "rust-analyzer.lru.capacity": 512,
+  "rust-analyzer.rustfmt.rangeFormatting.enable": true
+}

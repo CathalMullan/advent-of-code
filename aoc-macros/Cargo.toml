@@ -1,0 +1,20 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+[package]
+name = "aoc-macros"
+description = "Advent of Code Macros"
+version = "0.1.0"
+authors = ["Cathal Mullan <contact@cathal.dev>"]
+edition = "2021"
+keywords = ["advent-of-code"]
+categories = ["rust-patterns"]
+repository = "https://github.com/CathalMullan/advent-of-code/aoc-macros"
+license = "MIT"
+publish = false
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = { version = "1.0", features = ["full"] }
