@@ -27,3 +27,15 @@ Time: 9.208µs
 Solution: 3842356
 Time: 8.458µs
 ```
+
+### [Day 3](src/bin/2015_03.rs)
+
+```shell
+$ cargo run --release --bin 2015_03
+[2015/03/01]
+Solution: 2565
+Time: 367.625µs
+[2015/03/02]
+Solution: 2639
+Time: 494.541µs
+```
