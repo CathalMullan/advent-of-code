@@ -19,9 +19,13 @@ deny = [
   "clippy::try_err",
   "clippy::unneeded_field_pattern",
   "clippy::unseparated_literal_suffix",
-  "clippy::unwrap_used",
   "clippy::verbose_file_reads",
   "clippy::wildcard_enum_match_arm",
 ]
 
-allow = ["clippy::missing_errors_doc", "clippy::must_use_candidate"]
+allow = [
+  "clippy::missing_errors_doc",
+  "clippy::missing_panics_doc",
+  "clippy::must_use_candidate",
+  "clippy::module_name_repetitions",
+]

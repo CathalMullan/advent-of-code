@@ -1,3 +1,5 @@
+# NOTE: cargo-make has issues with workspaces
+
 validate: build fmt lint test
 ci: build fmt-ci lint-ci test
 

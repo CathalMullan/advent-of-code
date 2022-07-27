@@ -48,7 +48,7 @@ pub fn aoc(attr: TokenStream, input: TokenStream) -> TokenStream {
             let elapsed = timer.elapsed();
 
             println!("{}", #title);
-            println!("Solution: {}", result);
+            println!("Solution: {:#?}", result);
             println!("Time: {:#?}", elapsed);
 
             result

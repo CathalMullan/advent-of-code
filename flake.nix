@@ -29,18 +29,18 @@
         inherit (pkgs) lib stdenv mkShell fetchFromGitHub;
         inherit (pkgs.darwin.apple_sdk.frameworks) SystemConfiguration;
 
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+
         rust-toolchain = fenix.packages."${system}".fromToolchainFile {
           file = "${self}/rust-toolchain.toml";
-          sha256 = "sha256-AoqjoLifz8XrZWP7piauFfWCvhzPMLKxfv57h6Ng1oM=";
+          sha256 = "sha256-T3ZIxjAX81wEq1SMnieh60c6xFvJ4rBZexeBS/3zGF4=";
         };
 
         naerskPlatform = naersk.lib.${system}.override {
           cargo = rust-toolchain;
           rustc = rust-toolchain;
-        };
-
-        pkgs = import nixpkgs {
-          inherit system;
         };
 
         cargo-cranky = naerskPlatform.buildPackage {
