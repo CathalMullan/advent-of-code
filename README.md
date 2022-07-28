@@ -51,3 +51,15 @@ Time: 176.0855ms
 Solution: 9958218
 Time: 4.96032375s
 ```
+
+### [Day 5](src/bin/2015_05.rs)
+
+```shell
+$ cargo run --release --bin 2015_05
+[2015/05/01]
+Solution: 238
+Time: 935.25µs
+[2015/05/02]
+Solution: 69
+Time: 1.795541ms
+```
