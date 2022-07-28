@@ -7,7 +7,6 @@ where
 {
     file_contents
         .split('\n')
-        .filter(|line| !line.is_empty())
         .map(|line| line.trim().parse().unwrap())
         .collect()
 }

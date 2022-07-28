@@ -14,5 +14,10 @@ repository = "https://github.com/CathalMullan/advent-of-code"
 license = "MIT"
 publish = false
 
+# Helps with some of the "brute-force" style questions
+[profile.test]
+opt-level = 3
+
 [dependencies]
 aoc-macros = { path = "aoc-macros" }
+md5 = "0.7"

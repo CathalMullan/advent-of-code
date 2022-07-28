@@ -17,7 +17,7 @@ pub fn aoc(attr: TokenStream, input: TokenStream) -> TokenStream {
     let renamed_func = ItemFn {
         sig: Signature {
             ident: Ident::new(&renamed_func_name.to_string(), sig.ident.span()),
-            ..func.sig.clone()
+            ..sig.clone()
         },
         ..func.clone()
     };

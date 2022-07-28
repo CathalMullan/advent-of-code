@@ -10,7 +10,9 @@ use aoc_macros::aoc;
 const INPUT: &str = include_str!("../../data/2015/02.txt");
 
 fn main() {
-    let input_vec: Vec<Box> = by_line_vector(INPUT);
+    let input = INPUT.trim();
+    let input_vec: Vec<Box> = by_line_vector(input);
+
     part_1(&input_vec);
     part_2(&input_vec);
 }
@@ -105,7 +107,9 @@ mod tests {
 
     #[test]
     fn test_part_1_solution() {
-        let input_vec: Vec<Box> = by_line_vector(INPUT);
+        let input = INPUT.trim();
+        let input_vec: Vec<Box> = by_line_vector(input);
+
         assert_eq!(1_606_483, part_1(&input_vec));
     }
 
@@ -137,7 +141,9 @@ mod tests {
 
     #[test]
     fn test_part_2_solution() {
-        let input_vec: Vec<Box> = by_line_vector(INPUT);
+        let input = INPUT.trim();
+        let input_vec: Vec<Box> = by_line_vector(input);
+
         assert_eq!(3_842_356, part_2(&input_vec));
     }
 }

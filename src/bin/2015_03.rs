@@ -8,8 +8,9 @@ use aoc_macros::aoc;
 const INPUT: &str = include_str!("../../data/2015/03.txt");
 
 fn main() {
-    part_1(INPUT);
-    part_2(INPUT);
+    let input = INPUT.trim();
+    part_1(input);
+    part_2(input);
 }
 
 #[aoc("[2015/03/01]")]
@@ -17,13 +18,10 @@ fn part_1(input: &str) -> usize {
     let mut position: (isize, isize) = (0, 0);
     let mut matrix: HashMap<(isize, isize), usize> = HashMap::from([(position, 1)]);
 
-    input
-        .trim()
-        .chars()
-        .for_each(|character| {
-            perform_move(character, &mut position);
-            *matrix.entry(position).or_insert(0) += 1;
-        });
+    input.chars().for_each(|character| {
+        perform_move(character, &mut position);
+        *matrix.entry(position).or_insert(0) += 1;
+    });
 
     matrix.len()
 }
@@ -37,7 +35,6 @@ fn part_2(input: &str) -> usize {
     let mut robo_matrix: HashMap<(isize, isize), usize> = HashMap::from([(robo_position, 1)]);
 
     input
-        .trim()
         .chars()
         .enumerate()
         .for_each(|(index, character)| {
@@ -83,7 +80,8 @@ mod tests {
 
     #[test]
     fn test_part_1_solution() {
-        assert_eq!(2_565, part_1(INPUT));
+        let input = INPUT.trim();
+        assert_eq!(2_565, part_1(input));
     }
 
     #[test]
@@ -97,6 +95,7 @@ mod tests {
 
     #[test]
     fn test_part_2_solution() {
-        assert_eq!(2_639, part_2(INPUT));
+        let input = INPUT.trim();
+        assert_eq!(2_639, part_2(input));
     }
 }

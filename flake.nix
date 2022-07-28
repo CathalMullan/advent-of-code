@@ -60,23 +60,24 @@
         devShell = mkShell {
           name = "advent-of-code-shell";
 
-          buildInputs = with pkgs; [
-            # Build
-            pkg-config
-            libiconv
+          buildInputs = with pkgs;
+            [
+              # Build
+              pkg-config
+              libiconv
 
-            # Rust
-            rust-toolchain
-            cargo-cranky
-            cargo-nextest
+              # Rust
+              rust-toolchain
+              cargo-cranky
+              cargo-nextest
 
-            # Nix
-            nixpkgs-fmt
-            rnix-lsp
-          ] ++ lib.optional (stdenv.isDarwin) [
-            # Build
-            SystemConfiguration
-          ];
+              # Nix
+              nixpkgs-fmt
+              rnix-lsp
+            ] ++ lib.optional (stdenv.isDarwin) [
+              # Build
+              SystemConfiguration
+            ];
         };
       });
 }

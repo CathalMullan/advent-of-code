@@ -5,8 +5,9 @@ use aoc_macros::aoc;
 const INPUT: &str = include_str!("../../data/2015/01.txt");
 
 fn main() {
-    part_1(INPUT);
-    part_2(INPUT);
+    let input = INPUT.trim();
+    part_1(input);
+    part_2(input);
 }
 
 #[aoc("[2015/01/01]")]
@@ -64,7 +65,8 @@ mod tests {
 
     #[test]
     fn test_part_1_solution() {
-        assert_eq!(74, part_1(INPUT));
+        let input = INPUT.trim();
+        assert_eq!(74, part_1(input));
     }
 
     #[test]
@@ -78,6 +80,7 @@ mod tests {
 
     #[test]
     fn test_part_2_solution() {
-        assert_eq!(1_795, part_2(INPUT));
+        let input = INPUT.trim();
+        assert_eq!(1_795, part_2(input));
     }
 }

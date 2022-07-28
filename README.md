@@ -10,10 +10,10 @@ Advent of Code Solutions.
 $ cargo run --release --bin 2015_01
 [2015/01/01]
 Solution: 74
-Time: 5.666µs
+Time: 4.791µs
 [2015/01/02]
 Solution: 1795
-Time: 7.166µs
+Time: 6.333µs
 ```
 
 ### [Day 2](src/bin/2015_02.rs)
@@ -25,7 +25,7 @@ Solution: 1606483
 Time: 9.208µs
 [2015/02/02]
 Solution: 3842356
-Time: 8.458µs
+Time: 8.416µs
 ```
 
 ### [Day 3](src/bin/2015_03.rs)
@@ -34,8 +34,20 @@ Time: 8.458µs
 $ cargo run --release --bin 2015_03
 [2015/03/01]
 Solution: 2565
-Time: 367.625µs
+Time: 511µs
 [2015/03/02]
 Solution: 2639
-Time: 494.541µs
+Time: 590.541µs
+```
+
+### [Day 4](src/bin/2015_04.rs)
+
+```shell
+$ cargo run --release --bin 2015_04
+[2015/04/01]
+Solution: 346386
+Time: 176.0855ms
+[2015/04/02]
+Solution: 9958218
+Time: 4.96032375s
 ```
