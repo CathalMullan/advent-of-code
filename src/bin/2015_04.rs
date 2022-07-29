@@ -1,21 +1,33 @@
-//! <https://adventofcode.com/2015/day/3>
+//! <https://adventofcode.com/2015/day/4>
 
-use aoc_macros::aoc;
+use std::time::Instant;
 
 const INPUT: &str = include_str!("../../data/2015/04.txt");
 
 fn main() {
     let input = INPUT.trim();
-    part_1(input);
-    part_2(input);
+
+    let part_1_timer = Instant::now();
+    let part_1 = part_1(input);
+    let part_1_elapsed = part_1_timer.elapsed();
+
+    println!("[2015/04/01]");
+    println!("Solution: {part_1:#?}");
+    println!("Time: {part_1_elapsed:#?}");
+
+    let part_2_timer = Instant::now();
+    let part_2 = part_2(input);
+    let part_2_elapsed = part_2_timer.elapsed();
+
+    println!("[2015/04/02]");
+    println!("Solution: {part_2:#?}");
+    println!("Time: {part_2_elapsed:#?}");
 }
 
-#[aoc("[2015/04/01]")]
 fn part_1(input: &str) -> usize {
     brute_force(input, "00000")
 }
 
-#[aoc("[2015/04/02]")]
 fn part_2(input: &str) -> usize {
     brute_force(input, "000000")
 }

@@ -1,7 +1,4 @@
 # https://doc.rust-lang.org/cargo/reference/manifest.html
-[workspace]
-members = ["aoc-macros"]
-
 [package]
 name = "aoc"
 description = "Advent of Code Solutions"
@@ -19,5 +16,15 @@ publish = false
 opt-level = 3
 
 [dependencies]
-aoc-macros = { path = "aoc-macros" }
+# "numpy"
+ndarray = "0.15"
+# "pandas" - not needed (yet)
+# polars = { version = "0.22", features = [
+#   "default",
+#   "ndarray",
+#   "lazy",
+#   "fmt",
+#   "dtype-full",
+# ] }
+# 2015 - 04
 md5 = "0.7"

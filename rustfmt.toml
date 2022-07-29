@@ -1,7 +1,11 @@
 edition = "2021"
+unstable_features = true
 
 chain_width = 40
+group_imports = "StdExternalCrate"
+imports_layout = "HorizontalVertical"
 max_width = 160
 reorder_imports = true
+spaces_around_ranges = true
 use_field_init_shorthand = true
 use_try_shorthand = true

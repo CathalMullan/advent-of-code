@@ -63,3 +63,15 @@ Time: 935.25µs
 Solution: 69
 Time: 1.795541ms
 ```
+
+### [Day 6](src/bin/2015_06.rs)
+
+```shell
+$ cargo run --release --bin 2015_06
+[2015/06/01]
+Solution: 543903
+Time: 85.026458ms
+[2015/06/02]
+Solution: 14687245
+Time: 85.433208ms
+```
