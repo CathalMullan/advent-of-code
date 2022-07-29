@@ -11,7 +11,7 @@ const INPUT: &str = include_str!("../../data/2015/06.txt");
 
 fn main() {
     let input = INPUT.trim();
-    let input_vec: Vec<Instruction> = by_line_vector(input);
+    let input_vec: Vec<Coordinates> = by_line_vector(input);
 
     let part_1_timer = Instant::now();
     let part_1 = part_1(&input_vec);
@@ -30,23 +30,23 @@ fn main() {
     println!("Time: {part_2_elapsed:#?}");
 }
 
-pub fn part_1(input_vec: &[Instruction]) -> usize {
+pub fn part_1(input_vec: &[Coordinates]) -> usize {
     let mut array: Array2<usize> = Array2::zeros((1_000, 1_000));
 
-    for insturction in input_vec {
-        match &insturction {
-            Instruction::TurnOn(coordinate) => {
-                for (x, y) in coordinate.all_coordinates() {
+    for coordinates in input_vec {
+        match &coordinates.instruction {
+            Instruction::TurnOn => {
+                for (x, y) in coordinates.all_coordinates() {
                     array[[x, y]] = 1;
                 }
             }
-            Instruction::TurnOff(coordinate) => {
-                for (x, y) in coordinate.all_coordinates() {
+            Instruction::TurnOff => {
+                for (x, y) in coordinates.all_coordinates() {
                     array[[x, y]] = 0;
                 }
             }
-            Instruction::Toggle(coordinate) => {
-                for (x, y) in coordinate.all_coordinates() {
+            Instruction::Toggle => {
+                for (x, y) in coordinates.all_coordinates() {
                     match array[[x, y]] {
                         0 => array[[x, y]] = 1,
                         1 => array[[x, y]] = 0,
@@ -60,18 +60,18 @@ pub fn part_1(input_vec: &[Instruction]) -> usize {
     array.sum()
 }
 
-pub fn part_2(input_vec: &[Instruction]) -> usize {
+pub fn part_2(input_vec: &[Coordinates]) -> usize {
     let mut array: Array2<usize> = Array2::zeros((1_000, 1_000));
 
-    for insturction in input_vec {
-        match &insturction {
-            Instruction::TurnOn(coordinate) => {
-                for (x, y) in coordinate.all_coordinates() {
+    for coordinates in input_vec {
+        match &coordinates.instruction {
+            Instruction::TurnOn => {
+                for (x, y) in coordinates.all_coordinates() {
                     array[[x, y]] += 1;
                 }
             }
-            Instruction::TurnOff(coordinate) => {
-                for (x, y) in coordinate.all_coordinates() {
+            Instruction::TurnOff => {
+                for (x, y) in coordinates.all_coordinates() {
                     if array[[x, y]] == 0 {
                         continue;
                     }
@@ -79,8 +79,8 @@ pub fn part_2(input_vec: &[Instruction]) -> usize {
                     array[[x, y]] -= 1;
                 }
             }
-            Instruction::Toggle(coordinate) => {
-                for (x, y) in coordinate.all_coordinates() {
+            Instruction::Toggle => {
+                for (x, y) in coordinates.all_coordinates() {
                     array[[x, y]] += 2;
                 }
             }
@@ -92,58 +92,59 @@ pub fn part_2(input_vec: &[Instruction]) -> usize {
 
 #[derive(Debug)]
 pub enum Instruction {
-    TurnOn(Coordinates),
-    TurnOff(Coordinates),
-    Toggle(Coordinates),
+    TurnOn,
+    TurnOff,
+    Toggle,
 }
 
 const TURN_ON: &str = "turn on ";
 const TURN_OFF: &str = "turn off ";
 const TOGGLE: &str = "toggle ";
 
-impl FromStr for Instruction {
+#[derive(Debug)]
+pub struct Coordinates {
+    instruction: Instruction,
+    start: (usize, usize),
+    end: (usize, usize),
+}
+
+impl FromStr for Coordinates {
     type Err = Infallible;
 
     fn from_str(input_str: &str) -> Result<Self, Self::Err> {
-        let coordinate_string;
-        let instruction = if input_str.contains(TURN_ON) {
-            coordinate_string = input_str.replace(TURN_ON, "");
-            Self::TurnOn
-        } else if input_str.contains(TURN_OFF) {
-            coordinate_string = input_str.replace(TURN_OFF, "");
-            Self::TurnOff
-        } else if input_str.contains(TOGGLE) {
-            coordinate_string = input_str.replace(TOGGLE, "");
-            Self::Toggle
-        } else {
-            unreachable!()
+        let is_turn_on = input_str.contains(TURN_ON);
+        let is_turn_off = input_str.contains(TURN_OFF);
+        let is_toggle = input_str.contains(TOGGLE);
+
+        let (instruction, coordinate_string): (Instruction, String) = match (is_turn_on, is_turn_off, is_toggle) {
+            (true, _, _) => (Instruction::TurnOn, input_str.replace(TURN_ON, "")),
+            (_, true, _) => (Instruction::TurnOff, input_str.replace(TURN_OFF, "")),
+            (_, _, true) => (Instruction::Toggle, input_str.replace(TOGGLE, "")),
+            (_, _, _) => {
+                unreachable!()
+            }
         };
 
         let coordinate_parts: Vec<&str> = coordinate_string
             .splitn(2, " through ")
             .collect();
 
-        let start_coordinate_parts: Vec<usize> = coordinate_parts[0]
+        let first_coordinate: Vec<usize> = coordinate_parts[0]
             .splitn(2, ',')
             .map(|string| string.parse().unwrap())
             .collect();
 
-        let end_coordinate_parts: Vec<usize> = coordinate_parts[1]
+        let second_coordinate: Vec<usize> = coordinate_parts[1]
             .splitn(2, ',')
             .map(|string| string.parse().unwrap())
             .collect();
 
-        Ok(instruction(Coordinates {
-            start: (start_coordinate_parts[0], start_coordinate_parts[1]),
-            end: (end_coordinate_parts[0], end_coordinate_parts[1]),
-        }))
+        Ok(Self {
+            instruction,
+            start: (first_coordinate[0], first_coordinate[1]),
+            end: (second_coordinate[0], second_coordinate[1]),
+        })
     }
-}
-
-#[derive(Debug)]
-pub struct Coordinates {
-    start: (usize, usize),
-    end: (usize, usize),
 }
 
 impl Coordinates {
@@ -171,14 +172,14 @@ mod tests {
     #[case("toggle 0,0 through 999,0", 1_000)]
     #[case("turn off 499,499 through 500,500", 0)]
     fn test_part_1(#[case] input: &str, #[case] expected: usize) {
-        let item = Instruction::from_str(input).unwrap();
+        let item = Coordinates::from_str(input).unwrap();
         assert_eq!(expected, part_1(&[item]));
     }
 
     #[test]
     fn test_part_1_solution() {
         let input = INPUT.trim();
-        let input_vec: Vec<Instruction> = by_line_vector(input);
+        let input_vec: Vec<Coordinates> = by_line_vector(input);
 
         assert_eq!(543_903, part_1(&input_vec));
     }
@@ -187,14 +188,14 @@ mod tests {
     #[case("turn on 0,0 through 0,0", 1)]
     #[case("toggle 0,0 through 999,999", 2_000_000)]
     fn test_part_2(#[case] input: &str, #[case] expected: usize) {
-        let item = Instruction::from_str(input).unwrap();
+        let item = Coordinates::from_str(input).unwrap();
         assert_eq!(expected, part_2(&[item]));
     }
 
     #[test]
     fn test_part_2_solution() {
         let input = INPUT.trim();
-        let input_vec: Vec<Instruction> = by_line_vector(input);
+        let input_vec: Vec<Coordinates> = by_line_vector(input);
 
         assert_eq!(14_687_245, part_2(&input_vec));
     }
