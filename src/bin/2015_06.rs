@@ -162,19 +162,17 @@ impl Coordinates {
 
 #[cfg(test)]
 mod tests {
+    use rstest::*;
+
     use super::*;
 
-    #[test]
-    fn test_part_1() {
-        let cases: Vec<(Vec<Instruction>, usize)> = vec![
-            (vec![Instruction::from_str("turn on 0,0 through 999,999").unwrap()], 1_000_000),
-            (vec![Instruction::from_str("toggle 0,0 through 999,0").unwrap()], 1_000),
-            (vec![Instruction::from_str("turn off 499,499 through 500,500").unwrap()], 0),
-        ];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_1(&input));
-        }
+    #[rstest]
+    #[case("turn on 0,0 through 999,999", 1_000_000)]
+    #[case("toggle 0,0 through 999,0", 1_000)]
+    #[case("turn off 499,499 through 500,500", 0)]
+    fn test_part_1(#[case] input: &str, #[case] expected: usize) {
+        let item = Instruction::from_str(input).unwrap();
+        assert_eq!(expected, part_1(&[item]));
     }
 
     #[test]
@@ -185,16 +183,12 @@ mod tests {
         assert_eq!(543_903, part_1(&input_vec));
     }
 
-    #[test]
-    fn test_part_2() {
-        let cases: Vec<(Vec<Instruction>, usize)> = vec![
-            (vec![Instruction::from_str("turn on 0,0 through 0,0").unwrap()], 1),
-            (vec![Instruction::from_str("toggle 0,0 through 999,999").unwrap()], 2_000_000),
-        ];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_2(&input));
-        }
+    #[rstest]
+    #[case("turn on 0,0 through 0,0", 1)]
+    #[case("toggle 0,0 through 999,999", 2_000_000)]
+    fn test_part_2(#[case] input: &str, #[case] expected: usize) {
+        let item = Instruction::from_str(input).unwrap();
+        assert_eq!(expected, part_2(&[item]));
     }
 
     #[test]

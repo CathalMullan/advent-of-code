@@ -54,25 +54,22 @@ fn part_2(input: &str) -> usize {
 
 #[cfg(test)]
 mod tests {
+    use rstest::*;
+
     use super::*;
 
-    #[test]
-    fn test_part_1() {
-        let cases: Vec<(&str, isize)> = vec![
-            ("(())", 0),
-            ("()()", 0),
-            ("(((", 3),
-            ("(()(()(", 3),
-            ("))(((((", 3),
-            ("())", -1),
-            ("))(", -1),
-            (")))", -3),
-            (")())())", -3),
-        ];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_1(input));
-        }
+    #[rstest]
+    #[case("(())", 0)]
+    #[case("()()", 0)]
+    #[case("(((", 3)]
+    #[case("(()(()(", 3)]
+    #[case("))(((((", 3)]
+    #[case("())", -1)]
+    #[case("))(", -1)]
+    #[case(")))", -3)]
+    #[case(")())())", -3)]
+    fn test_part_1(#[case] input: &str, #[case] expected: isize) {
+        assert_eq!(expected, part_1(input));
     }
 
     #[test]
@@ -81,13 +78,11 @@ mod tests {
         assert_eq!(74, part_1(input));
     }
 
-    #[test]
-    fn test_part_2() {
-        let cases: Vec<(&str, usize)> = vec![(")", 1), ("()())", 5)];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_2(input));
-        }
+    #[rstest]
+    #[case(")", 1)]
+    #[case("()())", 5)]
+    fn test_part_2(#[case] input: &str, #[case] expected: usize) {
+        assert_eq!(expected, part_2(input));
     }
 
     #[test]

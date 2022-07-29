@@ -29,4 +29,5 @@ allow = [
   "clippy::must_use_candidate",
   "clippy::multiple_crate_versions",
   "clippy::module_name_repetitions",
+  "clippy::wildcard_imports",
 ]

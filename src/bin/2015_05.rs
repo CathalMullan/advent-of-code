@@ -91,21 +91,19 @@ fn is_nice_string_part_2(input: &str) -> bool {
 
 #[cfg(test)]
 mod tests {
+    use rstest::*;
+
     use super::*;
 
-    #[test]
-    fn test_part_1() {
-        let cases: Vec<(Vec<String>, usize)> = vec![
-            (vec![String::from("ugknbfddgicrmopn")], 1),
-            (vec![String::from("aaa")], 1),
-            (vec![String::from("jchzalrnumimnmhp")], 0),
-            (vec![String::from("haegwjzuvuyypxyu")], 0),
-            (vec![String::from("dvszwmarrgswjxmb")], 0),
-        ];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_1(&input));
-        }
+    #[rstest]
+    #[case("ugknbfddgicrmopn", 1)]
+    #[case("aaa", 1)]
+    #[case("jchzalrnumimnmhp", 0)]
+    #[case("haegwjzuvuyypxyu", 0)]
+    #[case("dvszwmarrgswjxmb", 0)]
+    fn test_part_1(#[case] input: &str, #[case] expected: usize) {
+        let item = input.to_string();
+        assert_eq!(expected, part_1(&[item]));
     }
 
     #[test]
@@ -116,19 +114,15 @@ mod tests {
         assert_eq!(238, part_1(&input_vec));
     }
 
-    #[test]
-    fn test_part_2() {
-        let cases: Vec<(Vec<String>, usize)> = vec![
-            (vec![String::from("qjhvhtzxzqqjkmpb")], 1),
-            (vec![String::from("xxyxx")], 1),
-            (vec![String::from("uurcxstgmygtbstg")], 0),
-            (vec![String::from("ieodomkazucvgmuy")], 0),
-            (vec![String::from("aaa")], 0),
-        ];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_2(&input));
-        }
+    #[rstest]
+    #[case("qjhvhtzxzqqjkmpb", 1)]
+    #[case("xxyxx", 1)]
+    #[case("uurcxstgmygtbstg", 0)]
+    #[case("ieodomkazucvgmuy", 0)]
+    #[case("aaa", 0)]
+    fn test_part_2(#[case] input: &str, #[case] expected: usize) {
+        let item = input.to_string();
+        assert_eq!(expected, part_2(&[item]));
     }
 
     #[test]

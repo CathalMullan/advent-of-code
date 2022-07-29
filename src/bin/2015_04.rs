@@ -49,15 +49,15 @@ fn brute_force(input: &str, prefix: &str) -> usize {
 
 #[cfg(test)]
 mod tests {
+    use rstest::*;
+
     use super::*;
 
-    #[test]
-    fn test_part_1() {
-        let cases: Vec<(&str, usize)> = vec![("abcdef", 609_043), ("pqrstuv", 1_048_970)];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_1(input));
-        }
+    #[rstest]
+    #[case("abcdef", 609_043)]
+    #[case("pqrstuv", 1_048_970)]
+    fn test_part_1(#[case] input: &str, #[case] expected: usize) {
+        assert_eq!(expected, part_1(input));
     }
 
     #[test]

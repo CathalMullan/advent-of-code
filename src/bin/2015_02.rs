@@ -88,32 +88,16 @@ impl FromStr for Box {
 
 #[cfg(test)]
 mod tests {
+    use rstest::*;
+
     use super::*;
 
-    #[test]
-    fn test_part_1() {
-        let cases: Vec<(Vec<Box>, usize)> = vec![
-            (
-                vec![Box {
-                    length: 2,
-                    width: 3,
-                    height: 4,
-                }],
-                58,
-            ),
-            (
-                vec![Box {
-                    length: 1,
-                    width: 1,
-                    height: 10,
-                }],
-                43,
-            ),
-        ];
-
-        for (input_vec, expected) in cases {
-            assert_eq!(expected, part_1(&input_vec));
-        }
+    #[rstest]
+    #[case("2x3x4", 58)]
+    #[case("1x1x10", 43)]
+    fn test_part_1(#[case] input: &str, #[case] expected: usize) {
+        let item = Box::from_str(input).unwrap();
+        assert_eq!(expected, part_1(&[item]));
     }
 
     #[test]
@@ -124,30 +108,12 @@ mod tests {
         assert_eq!(1_606_483, part_1(&input_vec));
     }
 
-    #[test]
-    fn test_part_2() {
-        let cases: Vec<(Vec<Box>, usize)> = vec![
-            (
-                vec![Box {
-                    length: 2,
-                    width: 3,
-                    height: 4,
-                }],
-                34,
-            ),
-            (
-                vec![Box {
-                    length: 1,
-                    width: 1,
-                    height: 10,
-                }],
-                14,
-            ),
-        ];
-
-        for (input_vec, expected) in cases {
-            assert_eq!(expected, part_2(&input_vec));
-        }
+    #[rstest]
+    #[case("2x3x4", 34)]
+    #[case("1x1x10", 14)]
+    fn test_part_2(#[case] input: &str, #[case] expected: usize) {
+        let item = Box::from_str(input).unwrap();
+        assert_eq!(expected, part_2(&[item]));
     }
 
     #[test]

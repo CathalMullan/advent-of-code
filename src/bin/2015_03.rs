@@ -78,15 +78,16 @@ const fn perform_move(character: char, position: &mut (isize, isize)) {
 
 #[cfg(test)]
 mod tests {
+    use rstest::*;
+
     use super::*;
 
-    #[test]
-    fn test_part_1() {
-        let cases: Vec<(&str, usize)> = vec![(">", 2), ("^>v<", 4), ("^v^v^v^v^v", 2)];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_1(input));
-        }
+    #[rstest]
+    #[case(">", 2)]
+    #[case("^>v<", 4)]
+    #[case("^v^v^v^v^v", 2)]
+    fn test_part_1(#[case] input: &str, #[case] expected: usize) {
+        assert_eq!(expected, part_1(input));
     }
 
     #[test]
@@ -95,13 +96,12 @@ mod tests {
         assert_eq!(2_565, part_1(input));
     }
 
-    #[test]
-    fn test_part_2() {
-        let cases: Vec<(&str, usize)> = vec![("^v", 3), ("^>v<", 3), ("^v^v^v^v^v", 11)];
-
-        for (input, expected) in cases {
-            assert_eq!(expected, part_2(input));
-        }
+    #[rstest]
+    #[case("^v", 3)]
+    #[case("^>v<", 3)]
+    #[case("^v^v^v^v^v", 11)]
+    fn test_part_2(#[case] input: &str, #[case] expected: usize) {
+        assert_eq!(expected, part_2(input));
     }
 
     #[test]
