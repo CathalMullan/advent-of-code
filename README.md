@@ -75,3 +75,19 @@ Time: 85.026458ms
 Solution: 14687245
 Time: 85.433208ms
 ```
+
+### [Day 7](src/bin/2015_07.rs)
+
+TODO
+
+### [Day 8](src/bin/2015_08.rs)
+
+```shell
+$ cargo run --release --bin 2015_08
+[2015/08/01]
+Solution: 1371
+Time: 17.083µs
+[2015/08/02]
+Solution: 2117
+Time: 59.291µs
+```
